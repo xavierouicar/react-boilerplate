@@ -5,11 +5,13 @@ import { LOAD_SUPERHEROES } from 'containers/SuperheroesList/constants';
 
 export function* getSuperheroesList() {
   try {
-    const superheroes = yield call(superheroesApi.getList);
+    const superheroes = yield call(superheroesApi.getSuperheroesList);
+    console.log(superheroes);
     // success
     // yield put(reposLoaded(repos, username));
   } catch (err) {
     // error
+    console.log(err);
     // yield put(repoLoadingError(err));
   }
 }
