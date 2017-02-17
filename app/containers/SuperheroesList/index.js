@@ -17,15 +17,18 @@ export class SuperheroesList extends React.PureComponent { // eslint-disable-lin
   }
 
   render() {
+    console.log(this.props);
     return (
       <div>
+
       </div>
     );
   }
 }
 
 SuperheroesList.propTypes = {
-  loadSuperheroes: PropTypes.func.isRequired
+  loadSuperheroes: PropTypes.func.isRequired,
+
 };
 
 const mapStateToProps = createStructuredSelector({

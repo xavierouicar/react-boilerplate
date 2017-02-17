@@ -2,11 +2,16 @@ import { take, call, put, cancel, takeLatest } from 'redux-saga/effects';
 import * as superheroesApi from 'utils/superheroes.api';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import { LOAD_SUPERHEROES } from 'containers/SuperheroesList/constants';
+import { setSuperheroes } from 'containers/SuperheroesList/actions';
 
 export function* getSuperheroesList() {
   try {
-    const superheroes = yield call(superheroesApi.getSuperheroesList);
-    console.log(superheroes);
+    superheroesApi.getSuperheroesList().then((res, err) => {
+      if (!err) {
+        const superheroes = res.body.data.results;
+        put(setSuperheroes(superheroes));
+      }
+    });
     // success
     // yield put(reposLoaded(repos, username));
   } catch (err) {

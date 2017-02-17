@@ -16,7 +16,6 @@ function getHashfromTs(ts) {
 export function getSuperheroesList() {
   const ts = getCurrentTimestamp();
   const hash = getHashfromTs(ts);
-  console.log(hash);
   return new Promise((resolve, reject) => {
     request.get(API_URL + '/characters').query({
       ts,
