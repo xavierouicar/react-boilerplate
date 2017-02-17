@@ -22,7 +22,10 @@ export function getSuperheroesList() {
       apikey: API_PUBLIC,
       hash
     }).end(function(err, res) {
-      resolve(res);
+      if (!err) {
+        const superheroes = res.body.data.results;
+        resolve(superheroes);
+      }
     });
   });
 }

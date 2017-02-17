@@ -6,14 +6,9 @@ import { setSuperheroes } from 'containers/SuperheroesList/actions';
 
 export function* getSuperheroesList() {
   try {
-    superheroesApi.getSuperheroesList().then((res, err) => {
-      if (!err) {
-        const superheroes = res.body.data.results;
-        put(setSuperheroes(superheroes));
-      }
-    });
-    // success
-    // yield put(reposLoaded(repos, username));
+    const superheroes = yield call(superheroesApi.getSuperheroesList);
+    yield put(setSuperheroes(superheroes));
+
   } catch (err) {
     // error
     console.log(err);

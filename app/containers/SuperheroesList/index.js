@@ -17,12 +17,16 @@ export class SuperheroesList extends React.PureComponent { // eslint-disable-lin
   }
 
   render() {
-    console.log(this.props);
-    return (
-      <div>
-
-      </div>
-    );
+    const superheroes = this.props.SuperheroesList;
+    if (typeof superheroes == 'Array') {
+      console.log(superheroes);
+      const superheroesDiv = superheroes.map((e) => <div>{e.id}</div>);
+      return (
+        <div>
+          {superheroesDiv}
+        </div>
+      );
+    }
   }
 }
 

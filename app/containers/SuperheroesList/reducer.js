@@ -16,8 +16,7 @@ function superheroesListReducer(state = initialState, action) {
   switch (action.type) {
     case SET_SUPERHEROES:
       const {superheroes} = action;
-      console.log(superheroes);
-      return {...state, superheroesList: superheroes};
+      return fromJS(superheroes);
     case DEFAULT_ACTION:
       return state;
     default:
