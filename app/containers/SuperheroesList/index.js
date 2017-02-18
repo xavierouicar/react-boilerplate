@@ -9,6 +9,8 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import makeSelectSuperheroesList from './selectors';
 import {loadSuperheroes} from './actions';
+import SuperheroCard from '../../components/SuperheroCard/index';
+import {GridList} from 'material-ui/GridList';
 
 export class SuperheroesList extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
@@ -17,16 +19,17 @@ export class SuperheroesList extends React.PureComponent { // eslint-disable-lin
   }
 
   render() {
-    const superheroes = this.props.SuperheroesList;
-    if (typeof superheroes == 'Array') {
-      console.log(superheroes);
-      const superheroesDiv = superheroes.map((e) => <div>{e.id}</div>);
-      return (
-        <div>
-          {superheroesDiv}
-        </div>
-      );
-    }
+    const {superheroes} = this.props.SuperheroesList;
+    const superheroesElements = superheroes.map(
+      superhero => <SuperheroCard superhero={superhero} key={superhero.id}/>
+    );
+    return (
+      <GridList
+        cellHeight={250}
+      >
+        {superheroesElements}
+      </GridList>
+    );
   }
 }
 
