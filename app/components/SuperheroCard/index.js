@@ -29,8 +29,8 @@ class SuperheroCard extends React.PureComponent { // eslint-disable-line react/p
   render() {
     const {superhero} = this.props;
     return (
-      <Card id={superhero.id}>
-        <CardMedia style={{'max-height': '400px', overflow: 'hidden'}}>
+      <Card id={superhero.id} initiallyExpanded={false}>
+        <CardMedia style={{'maxHeight': '400px', overflow: 'hidden'}}>
           <img src={superhero.thumbnail.path + '.' + superhero.thumbnail.extension} />
         </CardMedia>
         <CardTitle title={superhero.name} actAsExpander showExpandableButton />
