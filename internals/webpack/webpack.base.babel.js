@@ -25,8 +25,15 @@ module.exports = (options) => ({
       // So, no need for ExtractTextPlugin here.
       test: /\.css$/,
       include: /node_modules/,
-      loaders: ['style-loader', 'css-loader'],
-    }, {
+      loaders: ['style-loader', 'css-loader', 'postcss-loader'],
+      exclude: /flexboxgrid/
+    },
+    {
+      test: /\.css$/,
+      loader: 'style-loader!css-loader?modules',
+      include: /flexboxgrid/,
+    },
+    {
       test: /\.(eot|svg|ttf|woff|woff2)$/,
       loader: 'file-loader',
     }, {
@@ -58,7 +65,7 @@ module.exports = (options) => ({
       query: {
         limit: 10000,
       },
-    }],
+    }]
   },
   plugins: options.plugins.concat([
     new webpack.ProvidePlugin({

@@ -5,8 +5,8 @@
 */
 
 import React, { PropTypes } from 'react';
-import {GridTile} from 'material-ui/GridList';
-import RaisedButton from 'material-ui/RaisedButton';
+import {Card, CardActions, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
 import ActionLabel from 'material-ui/svg-icons/action/label';
 
 // import styled from 'styled-components';
@@ -16,8 +16,8 @@ class SuperheroCard extends React.PureComponent { // eslint-disable-line react/p
   renderUrls(urls) {
     return <div>
       {urls.map(url =>
-        <a href={url.url} key={url.type} style={{'margin-right': '10px'}}>
-          <RaisedButton
+        <a href={url.url} key={url.type}>
+          <FlatButton
             icon={<ActionLabel />}
             label={url.type}
           />
@@ -29,15 +29,18 @@ class SuperheroCard extends React.PureComponent { // eslint-disable-line react/p
   render() {
     const {superhero} = this.props;
     return (
-      <GridTile
-        cols={4}
-        id={superhero.id}
-        key={superhero.id}
-        title={superhero.name}
-        subtitle={<span>{this.renderUrls(superhero.urls)}</span>}
-      >
-        <img src={superhero.thumbnail.path + '.' + superhero.thumbnail.extension} />
-      </GridTile>
+      <Card id={superhero.id}>
+        <CardMedia style={{height: '300px', overflow: 'hidden'}}>
+          <img src={superhero.thumbnail.path + '.' + superhero.thumbnail.extension} />
+        </CardMedia>
+        <CardTitle title={superhero.name} actAsExpander showExpandableButton />
+        <CardActions>
+          {this.renderUrls(superhero.urls)}
+        </CardActions>
+        <CardText expandable>
+          {superhero.description}
+        </CardText>
+      </Card>
     );
   }
 }

@@ -10,7 +10,7 @@ import { createStructuredSelector } from 'reselect';
 import makeSelectSuperheroesList from './selectors';
 import {loadSuperheroes} from './actions';
 import SuperheroCard from '../../components/SuperheroCard/index';
-import {GridList} from 'material-ui/GridList';
+const {Grid, Row, Col} = require('react-flexbox-grid');
 
 export class SuperheroesList extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
@@ -21,14 +21,16 @@ export class SuperheroesList extends React.PureComponent { // eslint-disable-lin
   render() {
     const {superheroes} = this.props.SuperheroesList;
     const superheroesElements = superheroes.map(
-      superhero => <SuperheroCard superhero={superhero} key={superhero.id}/>
+      superhero => <Col key={superhero.id} xs={12} sm={6} md={4} lg={3}>
+        <SuperheroCard superhero={superhero} />
+      </Col>
     );
     return (
-      <GridList
-        cellHeight={250}
-      >
-        {superheroesElements}
-      </GridList>
+      <Grid>
+        <Row middle="xs">
+          {superheroesElements}
+        </Row>
+      </Grid>
     );
   }
 }
