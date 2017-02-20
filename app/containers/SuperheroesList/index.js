@@ -11,7 +11,7 @@ import makeSelectSuperheroesList from './selectors';
 import {loadSuperheroes} from './actions';
 import SuperheroCard from '../../components/SuperheroCard/index';
 import CircularProgress from 'material-ui/CircularProgress';
-const {Grid, Row, Col} = require('react-flexbox-grid');
+import {Grid, Row, Col} from 'react-flexbox-grid';
 
 export class SuperheroesList extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 

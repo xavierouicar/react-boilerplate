@@ -29,3 +29,21 @@ export function getSuperheroesList() {
     });
   });
 }
+
+
+export function getSuperhero(id) {
+  const ts = getCurrentTimestamp();
+  const hash = getHashfromTs(ts);
+  return new Promise((resolve, reject) => {
+    request.get(API_URL + '/characters/' + id.toString()).query({
+      ts,
+      apikey: API_PUBLIC,
+      hash
+    }).end(function(err, res) {
+      if (!err) {
+        const superheroes = res.body.data.results[0];
+        resolve(superheroes);
+      }
+    });
+  });
+}
