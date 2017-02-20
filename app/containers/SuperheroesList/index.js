@@ -19,20 +19,22 @@ export class SuperheroesList extends React.PureComponent { // eslint-disable-lin
     this.props.loadSuperheroes();
   }
 
-  render() {
-    const {superheroes} = this.props.SuperheroesList;
-    const superheroesElements = superheroes.map(
+  renderSuperheroes(superheroes) {
+    return superheroes.map(
       superhero => <Col key={superhero.id} xs={12} sm={6} md={4} lg={3}>
         <SuperheroCard superhero={superhero} />
       </Col>
     );
-    return superheroesElements.length ? (
-      <Grid>
+  }
+
+  render() {
+    const {superheroes, loading} = this.props.SuperheroesList;
+    return loading ? <CircularProgress size={150} thickness={10} /> :
+      (<Grid>
         <Row middle="xs">
-          {superheroesElements}
+          {this.renderSuperheroes(superheroes)}
         </Row>
-      </Grid>
-    ) : <CircularProgress size={150} thickness={10} />;
+      </Grid>);
   }
 }
 
