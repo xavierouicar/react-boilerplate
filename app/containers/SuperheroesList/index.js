@@ -10,6 +10,7 @@ import { createStructuredSelector } from 'reselect';
 import makeSelectSuperheroesList from './selectors';
 import {loadSuperheroes} from './actions';
 import SuperheroCard from '../../components/SuperheroCard/index';
+import CircularProgress from 'material-ui/CircularProgress';
 const {Grid, Row, Col} = require('react-flexbox-grid');
 
 export class SuperheroesList extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -25,13 +26,13 @@ export class SuperheroesList extends React.PureComponent { // eslint-disable-lin
         <SuperheroCard superhero={superhero} />
       </Col>
     );
-    return (
+    return superheroesElements.length ? (
       <Grid>
         <Row middle="xs">
           {superheroesElements}
         </Row>
       </Grid>
-    );
+    ) : <CircularProgress size={150} thickness={10} />;
   }
 }
 
