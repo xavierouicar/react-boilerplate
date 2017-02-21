@@ -20,10 +20,16 @@ export class Detail extends React.Component { // eslint-disable-line react/prefe
     this.props.loadSuperhero(this.props.params.id);
   }
 
-  renderItems(items) {
-    return (<ul>
-        {items.map(item =><li>{item.name}</li>)}
-      </ul>);
+  renderItems(label, items) {
+    return (
+      <div>
+        <h3>
+          {label}
+        </h3>
+        <ul>
+          {items.map(item =><li>{item.name}</li>)}
+        </ul>
+      </div>);
   }
 
   render() {
@@ -36,25 +42,16 @@ export class Detail extends React.Component { // eslint-disable-line react/prefe
               <img style={{width: '100%'}} src={superhero.thumbnail.path + '.' + superhero.thumbnail.extension} />
             </Paper>
           </Col>
-          <Col xsOffset={1} xs={10} sm={9} md={7}>
+          <Col xsOffset={1} xs={10} sm={8} md={7}>
             <h1>
               {superhero.name}
             </h1>
             <h5>
               {superhero.description}
             </h5>
-            <h3>
-              Series
-            </h3>
-            {this.renderItems(superhero.series.items)}
-            <h3>
-              Events
-            </h3>
-            {this.renderItems(superhero.events.items)}
-            <h3>
-              Stories
-            </h3>
-            {this.renderItems(superhero.stories.items)}
+            {superhero.series.available > 0 && this.renderItems('Series', superhero.series.items)}
+            {superhero.events.available > 0 && this.renderItems('Events', superhero.events.items)}
+            {superhero.stories.available > 0 && this.renderItems('Stories', superhero.stories.items)}
           </Col>
         </Row>
       </Grid>
