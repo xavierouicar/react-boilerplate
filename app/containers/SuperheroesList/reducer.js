@@ -14,6 +14,7 @@ import {
 const initialState = fromJS({superheroes: [], loading: false});
 
 function superheroesListReducer(state = initialState, action) {
+  console.log(action);
   switch (action.type) {
     case SET_SUPERHEROES:
       const {superheroes} = action;

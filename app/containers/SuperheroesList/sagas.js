@@ -1,7 +1,7 @@
 import { take, call, put, cancel, takeLatest } from 'redux-saga/effects';
 import * as superheroesApi from 'utils/superheroes.api';
 import { LOCATION_CHANGE } from 'react-router-redux';
-import { LOAD_SUPERHEROES } from 'containers/SuperheroesList/constants';
+import { LOAD_SUPERHEROES, SET_SUPERHEROES } from 'containers/SuperheroesList/constants';
 import { setSuperheroes } from 'containers/SuperheroesList/actions';
 
 export function* getSuperheroesList() {
@@ -24,8 +24,8 @@ export function* superheroesData() {
   // By using `takeLatest` only the result of the latest API call is applied.
   // It returns task descriptor (just like fork) so we can continue execution
   const watcher = yield takeLatest(LOAD_SUPERHEROES, getSuperheroesList);
-  // Suspend execution until location changes
-  yield take(LOCATION_CHANGE);
+  // Suspend execution until superheroes are set
+  yield take(SET_SUPERHEROES);
   yield cancel(watcher);
 }
 
