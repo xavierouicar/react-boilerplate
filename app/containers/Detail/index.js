@@ -7,12 +7,12 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import makeSelectDetail from './selectors';
-import { loadSuperhero } from './actions';
 import { locationShape } from 'react-router/lib/PropTypes';
 import {Grid, Row, Col} from 'react-flexbox-grid';
 import Paper from 'material-ui/Paper';
 import CircularProgress from 'material-ui/CircularProgress';
+import makeSelectDetail from './selectors';
+import { loadSuperhero } from './actions';
 
 export class Detail extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -63,6 +63,7 @@ Detail.propTypes = {
   loadSuperhero: PropTypes.func.isRequired,
   Detail: PropTypes.object.isRequired,
   location: locationShape.isRequired,
+  params: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
