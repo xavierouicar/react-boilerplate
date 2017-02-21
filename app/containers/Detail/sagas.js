@@ -1,7 +1,7 @@
 import { take, call, put, cancel, takeLatest } from 'redux-saga/effects';
 import * as superheroesApi from 'utils/superheroes.api';
 import { LOCATION_CHANGE } from 'react-router-redux';
-import { LOAD_SUPERHERO } from 'containers/Detail/constants';
+import { LOAD_SUPERHERO, SET_SUPERHERO } from 'containers/Detail/constants';
 import { setSuperhero } from 'containers/Detail/actions';
 
 export function* getSuperhero(action) {
@@ -19,7 +19,7 @@ export function* getSuperhero(action) {
  */
 export function* superheroData() {
   const watcher = yield takeLatest(LOAD_SUPERHERO, getSuperhero);
-  yield take(LOCATION_CHANGE);
+  yield take(SET_SUPERHERO);
   yield cancel(watcher);
 }
 

@@ -16,7 +16,7 @@ import { loadSuperhero } from './actions';
 
 export class Detail extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.loadSuperhero(this.props.params.id);
   }
 
@@ -34,7 +34,7 @@ export class Detail extends React.Component { // eslint-disable-line react/prefe
 
   render() {
     const {loading, superhero} = this.props.Detail;
-    return loading ? <CircularProgress size={150} thickness={10} /> : (
+    return loading || superhero == null ? <CircularProgress size={150} thickness={10} /> : (
       <Grid>
         <Row>
           <Col xs={12} sm={3}>
